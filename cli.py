@@ -26,7 +26,7 @@ class MotoristaCLI(SimpleCLI):
         self.add_command("delete", self.delete_motorista)
 
     def create_motorista(self):
-        nota_motorista = int(input("Adicione a nota da corrida(1-10): "))
+        nota_motorista = int(input("Adicione a nota do motorista(1-10): "))
         
         # Criar objeto motorista
         motorista_id = self.motorista_model.create_motorista(nota_motorista)
