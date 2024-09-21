@@ -62,39 +62,3 @@ class MotoristaDAO:
         except Exception as e:
             print(f"An error occurred while adding corrida: {e}")
             return None
-
-    def update_corrida(self, motorista_id: str, corrida_index: int, nova_corrida: dict):
-        try:
-            motorista = self.db.collection.find_one({"_id": ObjectId(motorista_id)})
-            if motorista and 0 <= corrida_index < len(motorista["corridas"]):
-                motorista["corridas"][corrida_index] = nova_corrida
-                res = self.db.collection.update_one(
-                    {"_id": ObjectId(motorista_id)},
-                    {"$set": {"corridas": motorista["corridas"]}}
-                )
-                print(f"Corrida updated: {res.modified_count} document(s) modified")
-                return res.modified_count
-            else:
-                print("Corrida index out of range.")
-                return None
-        except Exception as e:
-            print(f"An error occurred while updating corrida: {e}")
-            return None
-
-    def delete_corrida(self, motorista_id: str, corrida_index: int):
-        try:
-            motorista = self.db.collection.find_one({"_id": ObjectId(motorista_id)})
-            if motorista and 0 <= corrida_index < len(motorista["corridas"]):
-                corrida_removida = motorista["corridas"].pop(corrida_index)
-                res = self.db.collection.update_one(
-                    {"_id": ObjectId(motorista_id)},
-                    {"$set": {"corridas": motorista["corridas"]}}
-                )
-                print(f"Corrida deleted: {res.modified_count} document(s) modified")
-                return res.modified_count
-            else:
-                print("Corrida index out of range.")
-                return None
-        except Exception as e:
-            print(f"An error occurred while deleting corrida: {e}")
-            return None

@@ -59,10 +59,10 @@ class MotoristaCLI(SimpleCLI):
 
             # Adiciona a corrida ao motorista
             self.motorista_model.add_corrida(motorista_id, corrida)
-            print(f"Corrida added to motorista with ID {motorista_id}.")
+            print(f"Corrida adicionada para o motorista com ID {motorista_id}.")
 
     def read_motorista(self):
-        motorista_id = input("Enter the motorista ID: ")
+        motorista_id = input("ID do motorista: ")
         motorista = self.motorista_model.read_motorista_by_id(motorista_id)
         if motorista:
             print(f"Nota do Motorista: {motorista['nota']}")
@@ -72,20 +72,20 @@ class MotoristaCLI(SimpleCLI):
                 passageiro = corrida['passageiro']
                 print(f"   Passageiro: {passageiro['nome']}, Documento: {passageiro['documento']}")
         else:
-            print("Motorista not found.")
+            print("Motorista não encontrado.")
 
     def update_motorista(self):
-        motorista_id = input("Enter the motorista ID: ")
-        nova_nota = int(input("Enter the new rating for the driver: "))
+        motorista_id = input("ID do motorista: ")
+        nova_nota = int(input("nova nota do motorista: "))
         self.motorista_model.update_motorista(motorista_id, nova_nota)
-        print(f"Motorista with ID {motorista_id} updated.")
+        print(f"Motorista com ID {motorista_id} atualizado.")
 
     def delete_motorista(self):
-        motorista_id = input("Enter the motorista ID: ")
+        motorista_id = input("ID do motorista: ")
         self.motorista_model.delete_motorista(motorista_id)
-        print(f"Motorista with ID {motorista_id} deleted.")
+        print(f"Motorista de ID {motorista_id} deletado.")
 
     def run(self):
-        print("Welcome to the motorista CLI!")
-        print("Available commands: create, read, update, delete, quit")
+        print("Bem vindo")
+        print("Comando disponíveis: create, read, update, delete, quit")
         super().run()
