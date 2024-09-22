@@ -1,0 +1,66 @@
+{
+    $jsonSchema: {
+      bsonType: 'object',
+      required: [
+        'nota',
+        'corridas'
+      ],
+      properties: {
+        nota: {
+          bsonType: 'int',
+          minimum: 0,
+          maximum: 10,
+          description: 'Nota do motorista, obrigatória e deve ser um inteiro entre 0 e 10.'
+        },
+        corridas: {
+          bsonType: 'array',
+          description: 'Lista de corridas realizadas pelo motorista.',
+          items: {
+            bsonType: 'object',
+            required: [
+              'nota',
+              'distancia',
+              'valor',
+              'passageiro'
+            ],
+            properties: {
+              nota: {
+                bsonType: 'int',
+                minimum: 0,
+                maximum: 5,
+                description: 'Nota da corrida, obrigatória e deve ser um inteiro entre 0 e 5.'
+              },
+              distancia: {
+                bsonType: 'double',
+                minimum: 0,
+                description: 'Distância percorrida na corrida, obrigatória e deve ser um número decimal positivo.'
+              },
+              valor: {
+                bsonType: 'double',
+                minimum: 0,
+                description: 'Valor da corrida, obrigatório e deve ser um número decimal positivo.'
+              },
+              passageiro: {
+                bsonType: 'object',
+                required: [
+                  'nome',
+                  'documento'
+                ],
+                properties: {
+                  nome: {
+                    bsonType: 'string',
+                    description: 'Nome do passageiro, obrigatório e deve ser uma string.'
+                  },
+                  documento: {
+                    bsonType: 'string',
+                    description: 'Documento do passageiro, obrigatório e deve ser uma string única.'
+                  }
+                },
+                description: 'Informações sobre o passageiro da corrida.'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
